@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Welcome to My University</h1>
+    {% if user.is_authenticated %}
+        <p>Welcome, {{ user.first_name }}!</p>
+        {% if user.is_student %}
+            <p>You are logged in as a student with ID: {{ user.student.student_id }}</p>
+            <!-- Display student-specific information -->
+        {% elif user.is_lecturer %}
+            <p>You are logged in as a lecturer with PF number: {{ user.lecturer.pf_number }}</p>
+            <!-- Display lecturer-specific information -->
+        {% endif %}
+        <p>Email: {{ user.email }}</p>
+        <!-- Display other user details as needed -->
+    {% else %}
+        <p>You are not logged in.</p>
+    {% endif %}
+</div>
+{% endblock %}
